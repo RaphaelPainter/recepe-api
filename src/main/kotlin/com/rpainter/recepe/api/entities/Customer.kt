@@ -1,11 +1,23 @@
 package com.rpainter.recepe.api.entities
 
 import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import lombok.Builder
+import java.time.Instant
+import java.time.LocalDate
 import java.util.*
 
-
+@Builder
 @Entity
-data class Customer(@Id var id: String?, var name: String, var creation_date: Date)
+data class Customer( var name: String, var email: String, var password: String, var role:Role){
+
+    @Id
+    val id: UUID?=UUID.randomUUID()
+
+    val creation_date: Instant? = Instant.now()
+
+}
 
 
