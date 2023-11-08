@@ -1,8 +1,7 @@
 package com.rpainter.recepe.api.config
 
-import com.rpainter.recepe.api.repositories.CustomerRepository
 import com.rpainter.recepe.api.services.impl.CustomUserDetailsService
-import com.rpainter.recepe.api.services.impl.CustomerService
+import com.rpainter.recepe.api.services.impl.UserService
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -19,12 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder
 class Configuration{
 
     @Bean
-    fun userDetailsService(customerService: CustomerService): UserDetailsService =
+    fun userDetailsService(customerService: UserService): UserDetailsService =
         CustomUserDetailsService.CustomUserDetailsService(customerService)
     @Bean
     fun encoder(): PasswordEncoder = BCryptPasswordEncoder()
     @Bean
-    fun authenticationProvider(customerService: CustomerService): AuthenticationProvider =
+    fun authenticationProvider(customerService: UserService): AuthenticationProvider =
         DaoAuthenticationProvider()
             .also {
                 it.setUserDetailsService(userDetailsService(customerService))

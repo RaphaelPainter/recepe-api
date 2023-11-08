@@ -8,7 +8,8 @@ import mu.KotlinLogging
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.util.*
-
+import javax.crypto.SecretKey
+import javax.crypto.spec.SecretKeySpec
 
 
 @Service
@@ -16,9 +17,12 @@ class TokenService(
     jwtProperties: JwtProperties
 ) {
 
+
+    //private val secretKey = Jwts.SIG.HS512.key().build()
     private val secretKey = Keys.hmacShaKeyFor(
         jwtProperties.key.toByteArray()
     )
+
     private val logger = KotlinLogging.logger {}
 
 

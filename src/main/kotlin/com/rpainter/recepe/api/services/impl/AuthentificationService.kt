@@ -3,6 +3,7 @@ package com.rpainter.recepe.api.services.impl
 import com.rpainter.recepe.api.config.JwtProperties
 import com.rpainter.recepe.api.controllers.AuthenticationRequest
 import com.rpainter.recepe.api.controllers.AuthenticationResponse
+import io.jsonwebtoken.Jwts
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UserDetails
@@ -22,6 +23,7 @@ class AuthenticationService(
 
 
     fun authentication(authenticationRequest: AuthenticationRequest): AuthenticationResponse {
+
         authManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 authenticationRequest.email,
