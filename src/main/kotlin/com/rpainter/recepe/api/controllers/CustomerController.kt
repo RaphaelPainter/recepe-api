@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class CustomerController(val customerService: CustomerService) {
 
-    @GetMapping("/customers")
+    @GetMapping("/api/customers")
     fun all(): ResponseEntity<MutableIterable<Customer>> {
         return ResponseEntity.ok( customerService.all());
     }
 
-    @PostMapping("/customers")
+    @PostMapping("/api/customers/create")
     fun create(@RequestBody customer:Customer):ResponseEntity<Customer> {
         return ResponseEntity.ok( customerService.create(customer));
     }

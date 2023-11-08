@@ -4,6 +4,7 @@ import com.rpainter.recepe.api.config.JwtProperties
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
+import mu.KotlinLogging
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.util.*
@@ -18,6 +19,8 @@ class TokenService(
     private val secretKey = Keys.hmacShaKeyFor(
         jwtProperties.key.toByteArray()
     )
+    private val logger = KotlinLogging.logger {}
+
 
     fun generate(
         userDetails: UserDetails,
@@ -37,7 +40,10 @@ class TokenService(
     fun isValid(token: String, userDetails: UserDetails): Boolean {
         val email = extractEmail(token)
 
-        return userDetails.username == email && !isExpired(token)
+        val isValid: Boolean = userDetails.username == email && !isExpired(token)
+        logger.info {"Is AccessToken valid ? : " + isValid  }
+
+        return isValid
     }
 
     fun extractEmail(token: String): String? =

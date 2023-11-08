@@ -11,7 +11,7 @@ import java.util.*
 
 @Builder
 @Entity
-data class Customer( var name: String, var email: String, var password: String, var role:Role){
+data class Customer( var name: String, var email: String, var encryptedPassword: String, var role:String){
 
     @Id
     val id: UUID?=UUID.randomUUID()

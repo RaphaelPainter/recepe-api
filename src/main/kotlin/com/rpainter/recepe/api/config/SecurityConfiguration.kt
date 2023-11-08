@@ -26,14 +26,15 @@ class SecurityConfiguration(
                 it
                     .requestMatchers(AntPathRequestMatcher("/api/auth"))
                     .permitAll()
-                    .requestMatchers(AntPathRequestMatcher("api/auth/refresh"))
+                    .requestMatchers(AntPathRequestMatcher("/api/customers/create"))
                     .permitAll()
+                    /*
                     .requestMatchers(AntPathRequestMatcher("/error"))
                     .permitAll()
                     .requestMatchers(AntPathRequestMatcher("/api/user"))
                     .permitAll()
                     .requestMatchers(AntPathRequestMatcher("/api/user**"))
-                    .hasRole("ADMIN")
+                    .hasRole("ADMIN")*/
                     .anyRequest()
                     .fullyAuthenticated()
             }
