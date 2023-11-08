@@ -26,17 +26,12 @@ class SecurityConfiguration(
                 it
                     .requestMatchers(AntPathRequestMatcher("/api/auth"))
                     .permitAll()
-                    .requestMatchers(AntPathRequestMatcher("/api/customers/create"))
+                    .requestMatchers(AntPathRequestMatcher("/api/user/create"))
                     .permitAll()
-                    /*
-                    .requestMatchers(AntPathRequestMatcher("/error"))
-                    .permitAll()
-                    .requestMatchers(AntPathRequestMatcher("/api/user"))
-                    .permitAll()
-                    .requestMatchers(AntPathRequestMatcher("/api/user**"))
-                    .hasRole("ADMIN")*/
+                    .requestMatchers(AntPathRequestMatcher("/api/admin/**"))
+                    .hasRole("ADMIN")
                     .anyRequest()
-                    .fullyAuthenticated()
+                    .permitAll()
             }
             .sessionManagement {
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
