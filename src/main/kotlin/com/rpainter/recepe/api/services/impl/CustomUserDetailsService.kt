@@ -21,7 +21,7 @@ class CustomUserDetailsService {
         private fun ApplicationUser.mapToUserDetails(): UserDetails =
             User.builder()
                 .username(this.email)
-                .password(this.encryptedPassword)
+                .password(this.password)
                 .roles(this.getRole())
                 .build()
     }

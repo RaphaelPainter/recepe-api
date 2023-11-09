@@ -4,7 +4,6 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import lombok.Builder
 import java.time.Instant
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.*
@@ -12,7 +11,7 @@ import java.util.*
 
 @Builder
 @Entity
-data class ApiUser(var name: String, var email: String, var encryptedPassword: String){
+data class ApiUser(var name: String, var email: String, var password: String){
 
     @Id
     val id: UUID?=UUID.randomUUID()

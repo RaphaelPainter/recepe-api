@@ -26,7 +26,7 @@ class UserService(val userRepository: UserRepository) : IUserService {
 
 
     override fun createUser(user : ApiUser): ApiUser {
-        user.encryptedPassword = BCryptPasswordEncoder().encode(user.encryptedPassword)
+        user.password = BCryptPasswordEncoder().encode(user.password)
         user.setRole(Role.USER)
         val res = userRepository.save(user)
         logger.info {user.email + " saved to database " }
@@ -34,7 +34,7 @@ class UserService(val userRepository: UserRepository) : IUserService {
     }
 
     override fun createAdmin(user : ApiUser): ApiUser {
-        user.encryptedPassword = BCryptPasswordEncoder().encode(user.encryptedPassword)
+        user.password = BCryptPasswordEncoder().encode(user.password)
         user.setRole(Role.ADMIN)
         val res = userRepository.save(user)
         logger.info {user.email + " saved to database " }
