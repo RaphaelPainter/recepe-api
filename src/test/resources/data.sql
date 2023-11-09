@@ -19,7 +19,7 @@ CREATE TABLE api_user (
 INSERT INTO api_user (id, name,  email, password, creation_date, role) values (
     '550e8400-e29b-41d4-a716-446655440000',
     'Paul',
-    'admin',
+    'admin_test',
     '$2a$10$JVWfPunx/.7PDxNjk8XH3eHsw0/eGP8ZiSA4l9FjFfPr.HAKQ6QK.',
     '2023-11-07',
     'ADMIN'
@@ -27,7 +27,7 @@ INSERT INTO api_user (id, name,  email, password, creation_date, role) values (
 INSERT INTO api_user (id, name,  email, password, creation_date, role) values (
     '450e8400-e29b-41d4-a716-446655440000',
     'Paul',
-    'user',
+    'user_test',
     '$2a$10$JVWfPunx/.7PDxNjk8XH3eHsw0/eGP8ZiSA4l9FjFfPr.HAKQ6QK.',
     '2023-11-07',
     'USER'
