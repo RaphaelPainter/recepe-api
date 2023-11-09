@@ -1,10 +1,9 @@
 package com.rpainter.recepe.api.controllers
 
-import com.jayway.jsonpath.JsonPath
 import com.rpainter.recepe.api.ApiApplication
-import com.rpainter.recepe.api.Helper.ApiTestUser
+import com.rpainter.recepe.api.Helper.*
+import com.rpainter.recepe.api.Helper.TEST_USER_EMAIL
 import com.rpainter.recepe.api.entities.ApiUser
-import com.squareup.moshi.Moshi
 import configuration.TestConfig
 import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.Test
@@ -25,51 +24,65 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 @AutoConfigureMockMvc
 class AdminControllerTest {
 
-
 	@Autowired
 	private val mvc: MockMvc? = null
 
-
 	@Test
 	@Throws(Exception::class)
-	fun correct_auth_should_return_accessToken() {
+	fun admin_should_be_authorized_to_get_users() {
 		//GIVEN
-		val apiTestUser = getAuthenticatedTestAdmin()
+		val apiTestAdmin = mockAuthentification(mvc!!,TEST_ADMIN_EMAIL, TEST_ADMIN_PASSWORD)
 
 		//WHEN
 		mvc!!.perform(
 			MockMvcRequestBuilders.get("/api/admin/users")
-			.contentType(MediaType.APPLICATION_JSON)
-			.content("{\"email\": \"${apiTestUser.getEmail()}\", " +
-					"\"password\": \"${apiTestUser.getPassword()}\"}")
-			.header("authorization", "Bearer " + apiTestUser.getAccessToken())
-			.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"email\": \"${apiTestAdmin.email}\", " +
+						"\"password\": \"${apiTestAdmin.password}\"}")
+				.header("authorization", "Bearer " + apiTestAdmin.token)
+				.accept(MediaType.APPLICATION_JSON)
 		)
 			//THEN
 			.andExpect(status().isOk())
 	}
 
-	fun getAuthenticatedTestAdmin(): ApiTestUser {
-		val password = "123"
-		val encryptedPassword = BCryptPasswordEncoder().encode(password)
+	@Test
+	@Throws(Exception::class)
+	fun admin_should_be_effectively_able_to_get_users() {
+		//GIVEN
+		val apiTestAdmin = mockAuthentification(mvc!!,TEST_ADMIN_EMAIL, TEST_ADMIN_PASSWORD)
 
-		val apiUsersList: MutableList<ApiUser> = ArrayList<ApiUser>()
-		val user = ApiUser("John", "admin_test", encryptedPassword)
-		apiUsersList.add(user)
-
-		val authResponse = mvc!!.perform(
-			MockMvcRequestBuilders.post("/api/auth")
+		//WHEN
+		mvc!!.perform(
+			MockMvcRequestBuilders.get("/api/admin/users")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content("{\"email\": \"${user.email}\", " +
-						"\"password\": \"${password}\"}")
+				.content("{\"email\": \"${apiTestAdmin.email}\", " +
+						"\"password\": \"${apiTestAdmin.password}\"}")
+				.header("authorization", "Bearer " + apiTestAdmin.token)
 				.accept(MediaType.APPLICATION_JSON)
-		).andReturn().response.contentAsString
+		)
+			//THEN
+			.andExpect(jsonPath("$.users").exists())
+	}
 
-		val regex = "(?<=\\\"accessToken\\\":\\\")[^\\\"]*".toRegex()
-		val token:String = regex.find(authResponse)!!.value
 
-		val apiTestUser = ApiTestUser(user, token)
 
-		return apiTestUser;
+	@Test
+	@Throws(Exception::class)
+	fun user_should_not_be_authorized_to_get_users() {
+		//GIVEN
+		val apiTestUser = mockAuthentification(mvc!!,TEST_USER_EMAIL, TEST_USER_PASSWORD)
+
+		//WHEN
+		mvc!!.perform(
+			MockMvcRequestBuilders.get("/api/admin/users")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"email\": \"${apiTestUser.email}\", " +
+						"\"password\": \"${apiTestUser.password}\"}")
+				.header("authorization", "Bearer " + apiTestUser.token)
+				.accept(MediaType.APPLICATION_JSON)
+		)
+			//THEN
+			.andExpect(status().isForbidden())
 	}
 }

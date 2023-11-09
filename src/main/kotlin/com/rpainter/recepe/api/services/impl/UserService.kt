@@ -2,6 +2,7 @@ package com.rpainter.recepe.api.services.impl
 
 import com.rpainter.recepe.api.entities.Role
 import com.rpainter.recepe.api.entities.ApiUser
+import com.rpainter.recepe.api.entities.ApiUsers
 import com.rpainter.recepe.api.repositories.UserRepository
 import com.rpainter.recepe.api.services.itf.IUserService
 import mu.KotlinLogging
@@ -19,8 +20,8 @@ class UserService(val userRepository: UserRepository) : IUserService {
     private val environment: Environment? = null
     private val logger = KotlinLogging.logger {}
 
-    override fun all(): MutableIterable<ApiUser> {
-        return userRepository.findAll();
+    override fun findAll(): ApiUsers {
+        return ApiUsers(userRepository.findAll());
     }
 
 

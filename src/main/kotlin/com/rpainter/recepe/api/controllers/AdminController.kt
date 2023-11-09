@@ -1,6 +1,7 @@
 package com.rpainter.recepe.api.controllers
 
 import com.rpainter.recepe.api.entities.ApiUser
+import com.rpainter.recepe.api.entities.ApiUsers
 import com.rpainter.recepe.api.services.impl.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController
 class AdminController(val customerService: UserService) {
 
     @GetMapping("/api/admin/users")
-    fun all(): ResponseEntity<MutableIterable<ApiUser>> {
-        return ResponseEntity.ok( customerService.all());
+    fun all(): ResponseEntity<ApiUsers> {
+        return ResponseEntity.ok( customerService.findAll());
     }
 
     @PostMapping("/api/admin/users/create")
