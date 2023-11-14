@@ -1,6 +1,8 @@
 package com.rpainter.recepe.api.controllers
 
+import com.rpainter.recepe.api.config.KafkaTopicConfig
 import com.rpainter.recepe.api.services.impl.AuthenticationService
+import com.rpainter.recepe.api.services.impl.KafkaService
 
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -11,13 +13,16 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/auth")
 class AuthController(
-    private val authenticationService: AuthenticationService
-) {
+    private val authenticationService: AuthenticationService,
+    private val kafkaService: KafkaService
+    ) {
     @PostMapping
     fun authenticate(
         @RequestBody authRequest: AuthenticationRequest
-    ): AuthenticationResponse =
-        authenticationService.authentication(authRequest)
+    ): AuthenticationResponse {
+        kafkaService.send(KafkaTopicConfig.TOPIC.connections, "i am connected")
+        return  authenticationService.authentication(authRequest)
+    }
 }
 
 data class AuthenticationRequest(
