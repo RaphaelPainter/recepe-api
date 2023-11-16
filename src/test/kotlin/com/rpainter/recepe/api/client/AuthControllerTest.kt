@@ -1,21 +1,16 @@
-package com.rpainter.recepe.api.controllers
+package com.rpainter.recepe.api.client
 
 import com.rpainter.recepe.api.ApiApplication
-import com.rpainter.recepe.api.entities.ApiUser
-import com.rpainter.recepe.api.services.impl.AuthenticationService
+import com.rpainter.recepe.api.Helper.TEST_ADMIN_EMAIL
+import com.rpainter.recepe.api.Helper.TEST_ADMIN_PASSWORD
 import configuration.TestConfig
 import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.Test
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
@@ -33,14 +28,12 @@ class AuthControllerTest {
 	@Throws(Exception::class)
 	fun correct_auth_should_return_accessToken() {
 		//GIVEN
-		val adminEmail = "admin_test"
-		val adminPassword = "123"
 
 		//WHEN
-		val authResponse = mvc!!.perform(post("/api/auth")
+		val authResponse = mvc!!.perform(post(RootPath.AUTH)
 			.contentType(MediaType.APPLICATION_JSON)
-			.content("{\"email\": \"${adminEmail}\", " +
-					"\"password\": \"${adminPassword}\"}")
+			.content("{\"email\": \"${TEST_ADMIN_EMAIL}\", " +
+					"\"password\": \"${TEST_ADMIN_PASSWORD}\"}")
 			.accept(MediaType.APPLICATION_JSON)
 		)
 			//THEN
@@ -56,7 +49,7 @@ class AuthControllerTest {
 		val adminPassword = "123"
 
 		//WHEN
-		val authResponse = mvc!!.perform(post("/api/auth")
+		val authResponse = mvc!!.perform(post(RootPath.AUTH)
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("{\"email\": \"${adminEmail}\", " +
 					"\"password\": \"${adminPassword}\"}")
@@ -74,7 +67,7 @@ class AuthControllerTest {
 		val adminPassword = "wrong_password"
 
 		//WHEN
-		val authResponse = mvc!!.perform(post("/api/auth")
+		val authResponse = mvc!!.perform(post(RootPath.AUTH)
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("{\"email\": \"${adminEmail}\", " +
 					"\"password\": \"${adminPassword}\"}")

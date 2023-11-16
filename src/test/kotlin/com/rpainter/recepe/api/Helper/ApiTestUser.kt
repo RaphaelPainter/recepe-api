@@ -1,6 +1,7 @@
 package com.rpainter.recepe.api.Helper
 
-import com.rpainter.recepe.api.entities.ApiUser
+import com.rpainter.recepe.api.client.RootPath
+import mu.KotlinLogging
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -14,15 +15,19 @@ const val TEST_USER_EMAIL = "user_test"
 const val TEST_USER_PASSWORD = "123"
 
 const val ACCESS_TOKEN_REGEX = 	"(?<=\\\"accessToken\\\":\\\")[^\\\"]*"
+private val logger = KotlinLogging.logger {}
+
 
 fun mockAuthentification(mvc: MockMvc, email:String, password:String): ApiTestUser {
     val authResponse = mvc.perform(
-        MockMvcRequestBuilders.post("/api/auth")
+        MockMvcRequestBuilders.post(RootPath.AUTH)
             .contentType(MediaType.APPLICATION_JSON)
             .content("{\"email\": \"${email}\", " +
                     "\"password\": \"${password}\"}")
             .accept(MediaType.APPLICATION_JSON)
     ).andReturn().response.contentAsString
+
+    logger.info {("authResponse : $authResponse")}
 
     val regex = ACCESS_TOKEN_REGEX.toRegex()
     val token:String = regex.find(authResponse)!!.value
