@@ -15,7 +15,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @SpringBootApplication
 class ApiApplication
 
-
 fun main(args: Array<String>) {
 	runApplication<ApiApplication>(*args)
 }
