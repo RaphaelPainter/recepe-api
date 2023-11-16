@@ -1,7 +1,7 @@
 package com.rpainter.recepe.api.config
 
-import com.rpainter.recepe.api.services.impl.CustomUserDetailsService
-import com.rpainter.recepe.api.services.impl.UserService
+import com.rpainter.recepe.api.domain.services.auth.CustomUserDetailsService
+import com.rpainter.recepe.api.domain.services.user.UserFindService
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -11,23 +11,21 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
 
 @Configuration
 @EnableConfigurationProperties(JwtProperties::class)
 class Configuration{
 
     @Bean
-    fun userDetailsService(customerService: UserService): UserDetailsService =
-        CustomUserDetailsService.CustomUserDetailsService(customerService)
+    fun userDetailsService(userFindService: UserFindService): UserDetailsService =
+        CustomUserDetailsService.CustomUserDetailsService(userFindService)
+
     @Bean
-    fun encoder(): PasswordEncoder = BCryptPasswordEncoder()
-    @Bean
-    fun authenticationProvider(customerService: UserService): AuthenticationProvider =
+    fun authenticationProvider(customerService: UserFindService): AuthenticationProvider =
         DaoAuthenticationProvider()
             .also {
                 it.setUserDetailsService(userDetailsService(customerService))
-                it.setPasswordEncoder(encoder())
+                it.setPasswordEncoder( BCryptPasswordEncoder())
             }
     @Bean
     fun authenticationManager(config: AuthenticationConfiguration): AuthenticationManager =

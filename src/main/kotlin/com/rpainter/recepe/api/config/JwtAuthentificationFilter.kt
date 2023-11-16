@@ -1,7 +1,7 @@
 package com.rpainter.recepe.api.config
 
-import com.rpainter.recepe.api.services.impl.CustomUserDetailsService
-import com.rpainter.recepe.api.services.impl.TokenService
+import com.rpainter.recepe.api.domain.services.auth.CustomUserDetailsService
+import com.rpainter.recepe.api.domain.services.auth.TokenService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
