@@ -1,7 +1,8 @@
 package com.rpainter.recepe.api.config
+import com.rpainter.recepe.api.client.RootPath
+import com.rpainter.recepe.api.domain.model.Account
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -24,12 +25,14 @@ class SecurityConfiguration(
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers(AntPathRequestMatcher("/api/auth"))
+                    .requestMatchers(AntPathRequestMatcher(RootPath.AUTH))
                     .permitAll()
-                    .requestMatchers(AntPathRequestMatcher("/api/user/create"))
+
+                    .requestMatchers(AntPathRequestMatcher(RootPath.COOK))
                     .permitAll()
-                    .requestMatchers(AntPathRequestMatcher("/api/admin/**"))
-                    .hasRole("ADMIN")
+
+                    .requestMatchers(AntPathRequestMatcher(RootPath.ADMIN+"/**"))
+                    .hasRole(Account.AccountRole.ADMIN.toString())
                     .anyRequest()
                     .permitAll()
             }
