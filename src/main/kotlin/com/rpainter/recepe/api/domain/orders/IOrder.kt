@@ -1,6 +1,5 @@
-package com.rpainter.recepe.api.domain.aggregates.orders
+package com.rpainter.recepe.api.domain.orders
 
-import com.rpainter.recepe.api.domain.aggregates.ValidatedOrders.IValidatedOrder
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId

@@ -1,8 +1,8 @@
 package com.rpainter.recepe.api.domain.ports.cook
 
-import com.rpainter.recepe.api.domain.model.Cook
+import com.rpainter.recepe.api.domain.model.Chef
 
 
 interface ICookCreationService {
-    fun save(cook: Cook): Cook
+    fun save(cook: Chef): Chef
 }

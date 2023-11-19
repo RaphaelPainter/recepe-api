@@ -1,10 +1,8 @@
 package com.rpainter.recepe.api.domain.services.cook
 
 import com.rpainter.recepe.api.domain.model.Account
-import com.rpainter.recepe.api.domain.model.Cook
-import com.rpainter.recepe.api.domain.services.user.UserFindService
+import com.rpainter.recepe.api.domain.model.Chef
 import com.rpainter.recepe.api.server.adapters.CookRepository
-import com.rpainter.recepe.api.server.adapters.UserRepository
 import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -18,7 +16,6 @@ import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import kotlin.math.exp
 
 
 @SpringBootTest
@@ -42,14 +39,14 @@ class CookFindServiceTest {
 		val expectedAdmin = Account(name, email, encryptedPassword)
 		expectedAdmin.setRole(Account.AccountRole.ADMIN)
 
-		val expectedCookList = ArrayList<Cook>()
-		val expectedCook = Cook(name)
+		val expectedCookList = ArrayList<Chef>()
+		val expectedCook = Chef(name)
 		expectedCook.users_fk = expectedAdmin
 		expectedCookList.add(expectedCook)
 
 		//WHEN
 		`when`(dao?.findAll()).thenReturn(expectedCookList)
-		val obtained: MutableIterable<Cook>? = cookFindService?.findAll()
+		val obtained: MutableIterable<Chef>? = cookFindService?.findAll()
 
 		//THEN
 		assertEquals(expectedCookList, obtained)

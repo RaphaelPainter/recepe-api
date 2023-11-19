@@ -1,6 +1,6 @@
 package com.rpainter.recepe.api.domain.services.user
 
-import com.rpainter.recepe.api.domain.aggregates.orders.user.UserCreationOrder
+import com.rpainter.recepe.api.domain.orders.user.UserCreationOrder
 import com.rpainter.recepe.api.domain.model.Account
 import com.rpainter.recepe.api.domain.ports.user.IUserRepository
 import com.rpainter.recepe.api.domain.ports.user.IUserCreationService

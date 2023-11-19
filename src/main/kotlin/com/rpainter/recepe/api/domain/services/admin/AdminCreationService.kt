@@ -1,6 +1,6 @@
 package com.rpainter.recepe.api.domain.services.admin
 
-import com.rpainter.recepe.api.domain.aggregates.orders.admin.AdminCreationOrder
+import com.rpainter.recepe.api.domain.orders.admin.AdminCreationOrder
 import com.rpainter.recepe.api.domain.model.Account
 import com.rpainter.recepe.api.domain.ports.user.IUserCreationService
 import com.rpainter.recepe.api.server.adapters.UserRepository

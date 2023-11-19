@@ -1,23 +1,20 @@
 ALTER TABLE if exists recipe
 DROP CONSTRAINT  IF EXISTS fk_recipe_api_user;
 
-ALTER TABLE if exists COOKS
-DROP CONSTRAINT IF EXISTS fk_api_user_role;
+ALTER TABLE if exists chef
+DROP CONSTRAINT IF EXISTS fk_chef_account;
 
-ALTER TABLE if exists COOKS
-DROP CONSTRAINT IF EXISTS fk_cook_users;
-
-ALTER TABLE if exists FOOD
+ALTER TABLE if exists INGREDIENT
 DROP CONSTRAINT IF EXISTS fk_food_season_start;
 
-ALTER TABLE if exists FOOD
+ALTER TABLE if exists INGREDIENT
 DROP CONSTRAINT IF EXISTS fk_food_season_end;
 
 
 DROP TABLE IF EXISTS ACCOUNT;
 DROP TABLE IF EXISTS recipe;
-DROP TABLE IF EXISTS COOKS;
-DROP TABLE IF EXISTS FOOD;
+DROP TABLE IF EXISTS chef;
+DROP TABLE IF EXISTS INGREDIENT;
 DROP TABLE IF EXISTS MONTH_REF;
 
 CREATE TABLE ACCOUNT (
@@ -47,28 +44,28 @@ INSERT INTO ACCOUNT (id, name,  email, password, creation_date, role) values (
     'USER'
 );
 
-CREATE TABLE COOKS (
+CREATE TABLE chef (
    id UUID NOT NULL,
    name VARCHAR(50) NOT NULL,
-   creation_date DATETIME NOT NULL,
-   users_fk UUID NOT NULL,
-   unique(name),
+   account_fk UUID NOT NULL,
    primary key(id),
-   CONSTRAINT fk_cook_users
-          FOREIGN KEY (users_fk)
-          REFERENCES COOKS(id)
+   CONSTRAINT fk_chef_account
+          FOREIGN KEY (account_fk)
+          REFERENCES ACCOUNT(id)
 );
 
 CREATE TABLE recipe (
    id UUID NOT NULL,
    name VARCHAR(50) NOT NULL,
-   cooks_fk VARCHAR NOT NULL,
+   cooks_fk UUID NOT NULL,
+   description VARCHAR NOT NULL,
    primary key(id),
    unique(name),
    CONSTRAINT fk_recipe_api_user
        FOREIGN KEY (cooks_fk)
-       REFERENCES COOKS(id)
+       REFERENCES chef(id)
 );
+
 
 
 CREATE TABLE MONTH_REF (
@@ -92,7 +89,7 @@ INSERT INTO MONTH_REF (id, name) values (11, 'Novembre');
 INSERT INTO MONTH_REF (id, name) values (12, 'Décembre');
 
 
-CREATE TABLE FOOD (
+CREATE TABLE INGREDIENT (
    id UUID NOT NULL,
    name VARCHAR(50) NOT NULL,
    season_start NUMERIC,
@@ -106,9 +103,15 @@ CREATE TABLE FOOD (
           FOREIGN KEY (season_end)
           REFERENCES MONTH_REF(id)
 );
-INSERT INTO FOOD (id, name, season_start, season_end) values (
+INSERT INTO INGREDIENT (id, name, season_start, season_end) values (
 '450e8400-e29b-41d4-a716-446655440000',
 'topinambour',
-10,
-2
+11,
+12
+);
+INSERT INTO INGREDIENT (id, name, season_start, season_end) values (
+'450e8400-e29b-41d4-a716-446655440002',
+'banane',
+5,
+11
 );

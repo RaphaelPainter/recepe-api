@@ -1,8 +1,7 @@
-package com.rpainter.recepe.api.domain.aggregates.orders.user
+package com.rpainter.recepe.api.domain.orders.user
 
-import com.rpainter.recepe.api.domain.aggregates.ValidatedOrders.OrderValidationException
-import com.rpainter.recepe.api.domain.aggregates.ValidatedOrders.user.UserCreationValidatedOrder
-import com.rpainter.recepe.api.domain.aggregates.orders.IOrder
+import com.rpainter.recepe.api.domain.orders.OrderValidationException
+import com.rpainter.recepe.api.domain.orders.IOrder
 import com.rpainter.recepe.api.domain.model.Account
 
 class UserCreationOrder() : IOrder() {

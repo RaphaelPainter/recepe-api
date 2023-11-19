@@ -1,7 +1,7 @@
 package com.rpainter.recepe.api.server.adapters
 
-import com.rpainter.recepe.api.domain.aggregates.ValidatedOrders.admin.AdminCreationValidatedOrder
-import com.rpainter.recepe.api.domain.aggregates.ValidatedOrders.user.UserCreationValidatedOrder
+import com.rpainter.recepe.api.domain.orders.admin.AdminCreationValidatedOrder
+import com.rpainter.recepe.api.domain.orders.user.UserCreationValidatedOrder
 import com.rpainter.recepe.api.domain.model.Account
 import com.rpainter.recepe.api.domain.ports.user.IUserRepository
 import org.springframework.data.repository.CrudRepository

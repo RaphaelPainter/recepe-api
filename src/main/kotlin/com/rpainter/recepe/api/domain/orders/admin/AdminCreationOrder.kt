@@ -1,8 +1,7 @@
-package com.rpainter.recepe.api.domain.aggregates.orders.admin
+package com.rpainter.recepe.api.domain.orders.admin
 
-import com.rpainter.recepe.api.domain.aggregates.ValidatedOrders.admin.AdminCreationValidatedOrder
-import com.rpainter.recepe.api.domain.aggregates.ValidatedOrders.OrderValidationException
-import com.rpainter.recepe.api.domain.aggregates.orders.IOrder
+import com.rpainter.recepe.api.domain.orders.OrderValidationException
+import com.rpainter.recepe.api.domain.orders.IOrder
 import com.rpainter.recepe.api.domain.model.Account
 
 class AdminCreationOrder(): IOrder() {

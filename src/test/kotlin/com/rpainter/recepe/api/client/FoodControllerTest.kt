@@ -2,9 +2,8 @@ package com.rpainter.recepe.api.client
 
 import com.rpainter.recepe.api.ApiApplication
 import com.rpainter.recepe.api.Helper.*
-import com.rpainter.recepe.api.domain.model.Account
-import com.rpainter.recepe.api.domain.model.Chef
-import com.rpainter.recepe.api.domain.services.cook.CookFindService
+import com.rpainter.recepe.api.domain.model.Ingredient
+import com.rpainter.recepe.api.domain.services.food.FoodFindService
 import configuration.TestConfig
 import mu.KotlinLogging
 import org.hamcrest.Matchers.*
@@ -23,13 +22,13 @@ import java.util.*
 
 @SpringBootTest(classes = arrayOf(ApiApplication::class, TestConfig::class))
 @AutoConfigureMockMvc
-class CookControllerTest {
+class FoodControllerTest {
 
 	@Autowired
 	private val mvc: MockMvc? = null
 
 	@MockBean
-	val cookFindService: CookFindService? = null
+	val foodFindService: FoodFindService? = null
 
 	private val logger = KotlinLogging.logger {}
 
@@ -38,20 +37,17 @@ class CookControllerTest {
 	@Throws(Exception::class)
 	fun user_should_be_able_to_get_cooks() {
 		//GIVEN
-		/*val apiTestUser = mockAuthentification(mvc!!, TEST_USER_EMAIL, TEST_USER_PASSWORD)
+		val apiTestUser = mockAuthentification(mvc!!, TEST_USER_EMAIL, TEST_USER_PASSWORD)
 
-		val cooks = LinkedList<Chef>()
-		val cook = Chef("Chef")
-		val account =  Account("name", "email", "password")
-		account.setRole(Account.AccountRole.ADMIN)
-		cook.users_fk = account
-		cooks.add(cook)
+		val food: Ingredient = Ingredient("Banane", 1, 12)
+		val expected = ArrayList<Ingredient>()
+		expected.add(food)
 
-		`when`(cookFindService?.findAll()).thenReturn(cooks)
+		`when`(foodFindService?.findSeasonalFood()).thenReturn(expected)
 
 		//WHEN
 		mvc.perform(
-			MockMvcRequestBuilders.get(RootPath.COOK)
+			MockMvcRequestBuilders.get(RootPath.FOOD)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"email\": \"${apiTestUser.email}\", " +
 						"\"password\": \"${apiTestUser.password}\"}")
@@ -63,7 +59,7 @@ class CookControllerTest {
 			.andExpect(jsonPath("$").exists())
 			.andExpect(jsonPath("$").isArray )
 			.andExpect (
-				content().json(TestObjectMapper.getInstance()!!.writeValueAsString(cooks))
-			)*/
+				content().json(TestObjectMapper.getInstance()!!.writeValueAsString(expected))
+			)
 	}
 }

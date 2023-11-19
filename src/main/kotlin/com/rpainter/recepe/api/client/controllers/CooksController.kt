@@ -1,11 +1,8 @@
 package com.rpainter.recepe.api.client.controllers
 
 import com.rpainter.recepe.api.client.RootPath
-import com.rpainter.recepe.api.domain.model.Account
-import com.rpainter.recepe.api.domain.model.Cook
-import com.rpainter.recepe.api.domain.services.cook.CookCreationService
+import com.rpainter.recepe.api.domain.model.Chef
 import com.rpainter.recepe.api.domain.services.cook.CookFindService
-import lombok.Getter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -14,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class CooksController(val cookCreationService: CookFindService, val cookFindService : CookFindService) {
     @GetMapping("")
-    fun findAll(): ResponseEntity<MutableIterable<Cook>> {
+    fun findAll(): ResponseEntity<MutableIterable<Chef>> {
         return ResponseEntity.ok(cookFindService.findAll());
     }
 }

@@ -1,11 +1,11 @@
-package com.rpainter.recepe.api.domain.aggregates.ValidatedOrders
+package com.rpainter.recepe.api.domain.orders
 
-import com.rpainter.recepe.api.domain.aggregates.orders.IOrder
+import com.rpainter.recepe.api.domain.orders.IOrder
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 
-abstract class IValidatedOrder(open val order:IOrder)  {
+abstract class IValidatedOrder(open val order: IOrder)  {
     val validationDate: LocalDateTime =  LocalDateTime.ofInstant(Instant.now(), ZoneId.of("Europe/Paris"))
 }
 

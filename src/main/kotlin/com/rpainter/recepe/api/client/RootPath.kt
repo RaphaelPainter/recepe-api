@@ -12,6 +12,7 @@ class RootPath {
 
         const val AUTH=  "$NONADMIN/auth"
         const val COOK =  "$NONADMIN/cooks"
-
+        const val FOOD =  "$NONADMIN/food"
+        const val RECIPE =  "$NONADMIN/recipe"
     }
 }
