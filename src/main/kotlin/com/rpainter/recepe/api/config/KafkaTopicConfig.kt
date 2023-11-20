@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class KafkaTopicConfig {
-    @Value(value = "\${spring.kafka.bootstrap-servers}")
+    /*@Value(value = "\${spring.kafka.bootstrap-servers}")
     private val bootstrapAddress: String? = null
     @Bean
     fun kafkaAdmin(): KafkaAdmin {
@@ -26,5 +26,5 @@ class KafkaTopicConfig {
 
     enum class TOPIC {
         connections
-    }
+    }*/
 }

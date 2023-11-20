@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture
 
 @Service
 class KafkaService{
-
+/*
 
     @Autowired
     private val kafkaTemplate: KafkaTemplate<String, String>? = null
@@ -26,5 +26,5 @@ class KafkaService{
         var lf : CompletableFuture<SendResult<String, String>> = kafkaTemplate?.send(topicName, msg)!!
         println(lf)
     }
-
+*/
 }
