@@ -40,8 +40,9 @@ class CookFindServiceTest {
 		expectedAdmin.setRole(Account.AccountRole.ADMIN)
 
 		val expectedCookList = ArrayList<Chef>()
-		val expectedCook = Chef(name)
-		expectedCook.users_fk = expectedAdmin
+		val expectedCook = Chef()
+		expectedCook.name = name
+		expectedCook.account = expectedAdmin
 		expectedCookList.add(expectedCook)
 
 		//WHEN

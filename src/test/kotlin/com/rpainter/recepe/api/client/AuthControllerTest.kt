@@ -30,7 +30,7 @@ class AuthControllerTest {
 		//GIVEN
 
 		//WHEN
-		val authResponse = mvc!!.perform(post(RootPath.AUTH)
+		mvc!!.perform(post(RootPath.AUTH)
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("{\"email\": \"${TEST_ADMIN_EMAIL}\", " +
 					"\"password\": \"${TEST_ADMIN_PASSWORD}\"}")
@@ -49,7 +49,7 @@ class AuthControllerTest {
 		val adminPassword = "123"
 
 		//WHEN
-		val authResponse = mvc!!.perform(post(RootPath.AUTH)
+		mvc!!.perform(post(RootPath.AUTH)
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("{\"email\": \"${adminEmail}\", " +
 					"\"password\": \"${adminPassword}\"}")
@@ -67,7 +67,7 @@ class AuthControllerTest {
 		val adminPassword = "wrong_password"
 
 		//WHEN
-		val authResponse = mvc!!.perform(post(RootPath.AUTH)
+		mvc!!.perform(post(RootPath.AUTH)
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("{\"email\": \"${adminEmail}\", " +
 					"\"password\": \"${adminPassword}\"}")

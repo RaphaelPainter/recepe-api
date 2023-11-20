@@ -15,10 +15,7 @@ import java.util.*
 
 class FoodFindServiceTest {
 
-    @BeforeEach
-    fun init_mocks() {
-        MockitoAnnotations.initMocks(this)
-    }
+
 
     @Mock
     var dao: IFoodRepository? = null

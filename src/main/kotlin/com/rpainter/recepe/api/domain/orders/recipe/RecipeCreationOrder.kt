@@ -36,7 +36,7 @@ class RecipeCreationOrder(): IOrder() {
         this.food = food
     }
 
-    fun getTheFood(): MutableIterable<Ingredient>? {
-        return this.food
+    fun getTheFood(): MutableIterable<Ingredient>{
+        return this.food!!
     }
 }

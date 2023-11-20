@@ -39,7 +39,7 @@ class UserFindServiceTest {
 		val role = Account.AccountRole.ADMIN
 
 		val expectedAdmin = Account(name, email, encryptedPassword)
-		expectedAdmin.setRole(Account.AccountRole.ADMIN)
+		expectedAdmin.setRole(role)
 		apiUsersList.add(expectedAdmin)
 
 		//WHEN
@@ -63,7 +63,7 @@ class UserFindServiceTest {
 		val role = Account.AccountRole.ADMIN
 
 		val adminNotInDB = Account(name, email, encryptedPassword)
-		adminNotInDB.setRole(Account.AccountRole.ADMIN)
+		adminNotInDB.setRole(role)
 
 		//WHEN
 		`when`(dao?.findAll()).thenReturn(apiUsersList)

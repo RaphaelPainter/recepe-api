@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class RecipeController(val recipeCreationService: RecipeCreationService) {
     @PostMapping()
-    fun create(@RequestBody recipe: Recipe): ResponseEntity<MutableIterable<Ingredient>> {
+    fun create(@RequestBody recipe: Recipe): ResponseEntity<Recipe> {
         return ResponseEntity.ok(recipeCreationService.save(recipe));
     }
 }

@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping(path = [RootPath.AUTH])
 class AuthController(
     private val authenticationService: AuthenticationService,
-    private val kafkaService: KafkaService
+    //private val kafkaService: KafkaService
     ) {
     @PostMapping
     fun authenticate(
         @RequestBody authRequest: AuthenticationRequest
     ): AuthenticationResponse {
-        kafkaService.send(KafkaTopicConfig.TOPIC.connections, "i am connected")
+        //kafkaService.send(KafkaTopicConfig.TOPIC.connections, "i am connected")
         return  authenticationService.authentication(authRequest)
     }
 }

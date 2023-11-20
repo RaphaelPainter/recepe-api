@@ -2,6 +2,7 @@ package com.rpainter.recepe.api.server.adapters
 
 import com.rpainter.recepe.api.domain.model.Recipe
 import com.rpainter.recepe.api.domain.orders.recipe.RecipeCreationOrder
+import com.rpainter.recepe.api.domain.orders.recipe.RecipeCreationValidatedOrder
 import com.rpainter.recepe.api.domain.ports.recipe.IRecipeRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
@@ -19,9 +20,9 @@ class RecipeRepository( val repo: ItfRecipeRepository) : IRecipeRepository {
         return repo.findAll()
     }
 
-    override fun save(recipeCreationOrder: RecipeCreationOrder): Recipe {
+    override fun save(recipeCreationValidatedOrder: RecipeCreationValidatedOrder): Recipe {
         return repo.save(
-            recipeCreationOrder.getRecipe()
+                recipeCreationValidatedOrder.getRecipe()
         )
     }
 }
