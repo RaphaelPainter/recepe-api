@@ -1,6 +1,7 @@
 package com.rpainter.recepe.api.domain.services.food
 
 import com.rpainter.recepe.api.domain.model.Ingredient
+import com.rpainter.recepe.api.domain.model.Recipe
 import com.rpainter.recepe.api.domain.ports.cook.IFoodRepository
 import com.rpainter.recepe.api.domain.ports.food.IFoodFindService
 import org.springframework.stereotype.Service
@@ -18,6 +19,10 @@ class FoodFindService(val foodRepository : IFoodRepository): IFoodFindService {
         return getFoodRep().findAll().filter {
             isSeasonal(it.season_start, current_month, it.season_end)
         }.toMutableList()
+    }
+
+    override fun findById(ingredientId: String): Ingredient? {
+        return foodRepository.findById(ingredientId).get()
     }
 
     fun getFoodRep():IFoodRepository{

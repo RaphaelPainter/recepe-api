@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service
 class RecipeCreationService(val recipeRepository: IRecipeRepository): IRecipeCreationService {
     override fun save(recipe: Recipe): Recipe {
 
-        //TODO : create recipeCreationOrder
+        val recipeCreationOrder : RecipeCreationOrder = RecipeCreationOrder()
+        recipeCreationOrder.setRecipe(recipe)
 
-        //return recipeRepository.save()
-        return recipe
+        return recipeRepository.save(recipeCreationOrder.validate())
     }
+
+
 }

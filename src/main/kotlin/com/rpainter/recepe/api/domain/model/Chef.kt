@@ -1,5 +1,6 @@
 package com.rpainter.recepe.api.domain.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import lombok.Builder
 import java.util.*
@@ -12,6 +13,7 @@ data class Chef(
 
     var name: String?=null
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne
     var account:Account?=null
 }

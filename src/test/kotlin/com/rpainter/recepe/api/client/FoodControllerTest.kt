@@ -47,7 +47,7 @@ class FoodControllerTest {
 
 		//WHEN
 		mvc.perform(
-			MockMvcRequestBuilders.get(RootPath.FOOD)
+			MockMvcRequestBuilders.get(RootPath.INGREDIENT)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"email\": \"${apiTestUser.email}\", " +
 						"\"password\": \"${apiTestUser.password}\"}")

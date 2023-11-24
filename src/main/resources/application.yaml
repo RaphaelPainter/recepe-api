@@ -4,7 +4,8 @@ spring:
   #consumer:
   # group-id: "myGroup"
   h2:
-    console.enabled: true
+    console:
+      enabled: true
   datasource:
     url: jdbc:h2:file:~/data/demodb
     username: sa

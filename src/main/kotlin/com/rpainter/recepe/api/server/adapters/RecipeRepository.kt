@@ -7,6 +7,7 @@ import com.rpainter.recepe.api.domain.ports.recipe.IRecipeRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
+import java.util.*
 
 
 @Repository
@@ -18,6 +19,10 @@ class RecipeRepository( val repo: ItfRecipeRepository) : IRecipeRepository {
 
     override fun findAll(): MutableIterable<Recipe> {
         return repo.findAll()
+    }
+
+    override fun findById(id:String): Optional<Recipe> {
+        return repo.findById(id)
     }
 
     override fun save(recipeCreationValidatedOrder: RecipeCreationValidatedOrder): Recipe {

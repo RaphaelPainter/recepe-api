@@ -16,6 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 class SecurityConfiguration(
     private val authenticationProvider: AuthenticationProvider
 ) {
+
     @Bean
     fun securityFilterChain(
         http: HttpSecurity,
