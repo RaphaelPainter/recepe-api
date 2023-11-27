@@ -1,7 +1,15 @@
-version: "3.8"
-
+version: '3'
 services:
-  app:
-    build : .
+  recipe-back:
+    container_name: recipe-back
+    networks:
+      - recipe-network
+    build:
+      context: ./
     ports:
-      - "8080:8080"
+      - '8081:8081'
+
+networks:
+    recipe-network:
+      external:
+        name: recipe-network

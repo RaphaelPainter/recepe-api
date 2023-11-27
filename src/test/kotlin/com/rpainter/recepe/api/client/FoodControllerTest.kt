@@ -39,7 +39,7 @@ class FoodControllerTest {
 		//GIVEN
 		val apiTestUser = mockAuthentification(mvc!!, TEST_USER_EMAIL, TEST_USER_PASSWORD)
 
-		val food: Ingredient = Ingredient("Banane", 1, 12)
+		val food: Ingredient = Ingredient("Banane", 1, 12, "test")
 		val expected = ArrayList<Ingredient>()
 		expected.add(food)
 
