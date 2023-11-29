@@ -1,0 +1,35 @@
+{
+  "family": "recipe-api",
+  "placementConstraints": [],
+  "volumes": [],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "containerDefinitions": [
+    {
+      "memoryReservation": 128,
+      "name": "recipe-api",
+      "mountPoints": [],
+      "image": "435683540071.dkr.ecr.eu-west-3.amazonaws.com/recipe-api-rep:1.0",
+      "essential": true,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 8080,
+          "hostPort": 8080
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "recipe-api",
+          "awslogs-group": "/ecs/recipe-api"
+        }
+      },
+      "memory": 1024,
+      "cpu": 0,
+      "volumesFrom": []
+    }
+  ]
+}

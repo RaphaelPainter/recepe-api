@@ -21,4 +21,4 @@ jwt:
   access-token-expiration: 3600000
   refresh-token-expiration: 86400000
 server:
-  port: 8081
+  port: 8080
