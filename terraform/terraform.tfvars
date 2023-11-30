@@ -1,4 +1,4 @@
-codebuild_cache_bucket_name="apprunner-cache-yyyymmdd-identifier"
+codebuild_cache_bucket_name="apprunner-cache-yyyymmddmmss-identifier"
 aws_region="eu-west-3"
 stack="apprunner-workshop"
 aws_ecr="recipe-api"

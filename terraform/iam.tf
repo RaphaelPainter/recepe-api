@@ -56,5 +56,6 @@ data "aws_iam_policy_document" "apprunner-instance-role-policy" {
   statement {
     actions = ["ssm:GetParameter"]
     effect = "Allow"
+    resources = ["*"]
   }
 }
