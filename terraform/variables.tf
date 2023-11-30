@@ -7,7 +7,6 @@ variable "aws_region" {
 }
 
 variable "aws_profile" {
-  default     = "default"
   description = "AWS profile"
 }
 
@@ -76,6 +75,11 @@ variable "image_repo_name" {
   type        = string
 }
 
+variable "image_identifier" {
+  description = "image_identifier"
+  type        = string
+}
+
 variable "apprunner-service-role" {
   description = "This role gives App Runner permission to access ECR"
   default     = "recipe-api"
@@ -85,18 +89,8 @@ variable "codebuild_cache_bucket_name" {
   description = "Bucketname to use for storing codebuild cache artifacts"
 }
 variable "codecommit_username" {
-  default     = "raphapainter@wanadoo.fr"
   description = "Codecommit user name for config and push orperation"
 }
 variable "codecommit_email" {
-  default     = "raphapainter@wanadoo.fr"
   description = "Codecommit email for git push orperation"
-}
-
-variable "AWS_ACCESS_KEY" {
-  description = "aws access key"
-}
-
-variable "AWS_SECRET_KEY" {
-  description = "aws secret key"
 }

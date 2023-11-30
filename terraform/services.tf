@@ -16,7 +16,7 @@ resource "aws_apprunner_service" "service" {
           "AWS_REGION" : "${var.aws_region}",
         }
       }
-      image_identifier      = "${data.aws_ecr_repository.image_repo.repository_url}:latest"
+      image_identifier      = "${var.image_identifier}:latest"
       image_repository_type = "ECR"
     }
   }
