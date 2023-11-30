@@ -1,0 +1,8 @@
+codebuild_cache_bucket_name="apprunner-cache-yyyymmdd-identifier"
+aws_region="eu-west-3"
+stack="apprunner-workshop"
+aws_ecr="recipe-api"
+aws_profile="default"
+source_repo_name="recipe-api"
+source_repo_branch="develop2"
+image_repo_name="recipe-api"
