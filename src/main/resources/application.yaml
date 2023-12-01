@@ -1,0 +1,24 @@
+spring:
+  #kafka:
+  # bootstrap-servers: "localhost:29092"
+  #consumer:
+  # group-id: "myGroup"
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:file:~/data/demodb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate: ddl-auto=update
+  sql:
+    init.mode: always
+jwt:
+  key: 1cLXc+4DpgNslmueBVhjvVy9vPNGAv24rD2bNGI4D6agSlf3a5H3aHzm7bSVufKooRvVRmrJlrcxu8oQz1cLAQ==
+  access-token-expiration: 3600000
+  refresh-token-expiration: 86400000
+server:
+  port: 8080

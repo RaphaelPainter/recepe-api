@@ -1,0 +1,37 @@
+@startuml
+class Utilisateur {
+  -Number id (PK)
+  -String name
+  -String creation_date
+}
+
+class Recette {
+  -Number id (PK)
+  -Number created_by (User)
+  -String name
+  -Date creation_date
+  -String steps
+}
+
+class Assoc_Recette_Aliment {
+  -Number recette (PK, Recette)
+  -Number aliment (PK, Aliment)
+  -String name
+  -Date creation_date
+  -String steps
+}
+
+class Aliment {
+  -Number id (PK)
+  -String name
+  -Date season_start
+  -Date season_end
+}
+
+Utilisateur --* Recette
+
+
+Recette *--* Assoc_Recette_Aliment
+ Assoc_Recette_Aliment *--* Aliment
+
+@enduml
