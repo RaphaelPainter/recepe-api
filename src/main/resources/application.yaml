@@ -7,10 +7,9 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:file:~/data/demodb
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/recipebdd
+    username: postgres
+    password: test1234
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
     hibernate: ddl-auto=update

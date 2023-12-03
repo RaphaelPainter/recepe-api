@@ -28,7 +28,7 @@ CREATE TABLE ACCOUNT (
    name VARCHAR(50) NOT NULL,
    email VARCHAR NOT NULL,
    password VARCHAR NOT NULL,
-   creation_date DATETIME NOT NULL,
+   creation_date TIMESTAMP NOT NULL,
    role VARCHAR,
    unique(email),
    primary key(id)

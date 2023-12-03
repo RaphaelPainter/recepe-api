@@ -28,7 +28,7 @@ CREATE TABLE ACCOUNT (
    name VARCHAR(50) NOT NULL,
    email VARCHAR NOT NULL,
    password VARCHAR NOT NULL,
-   creation_date DATETIME NOT NULL,
+   creation_date TIMESTAMP NOT NULL,
    role VARCHAR,
    unique(email),
    primary key(id)
@@ -121,21 +121,21 @@ INSERT INTO INGREDIENT (id, name, season_start, season_end, image) values (
 '450e8400-e29b-41d4-a716-446655440000',
 'Betterave rouge de Garonne',
 9,
-11,
+12,
 'https://www.papillesetpupilles.fr/wp-content/uploads/2022/01/Betteraves-%C2%A9-supercat-shutterstock.jpg'
 );
 INSERT INTO INGREDIENT (id, name, season_start, season_end, image) values (
 '450e8400-e29b-41d4-a716-446655440001',
 'Blette',
 9,
-11,
+12,
 'https://www.mangeons-local.bzh/wp-content/uploads/bette-carde.jpg'
 );
 INSERT INTO INGREDIENT (id, name, season_start, season_end, image) values (
 '450e8400-e29b-41d4-a716-446655440002',
 'Brocoli',
 9,
-11,
+12,
 'https://resize.prod.docfr.doc-media.fr/s/1200/ext/eac4ff34/content/2022/7/5/brocoli-1000fdace663fd2b.jpeg'
 );
 
@@ -143,7 +143,7 @@ INSERT INTO INGREDIENT (id, name, season_start, season_end, image) values (
 '450e8400-e29b-41d4-a716-446655440003',
 'Bolet',
 9,
-11,
+12,
 'https://jardinage.lemonde.fr/images/dossiers/2016-10/bolet-bai-110137.jpg'
 );
 
