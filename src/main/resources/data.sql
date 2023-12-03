@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS MONTH_REF;
 DROP TABLE IF EXISTS recipe_ingredient;
 
 CREATE TABLE ACCOUNT (
-   id UUID NOT NULL,
+   id VARCHAR(36) NOT NULL,
    name VARCHAR(50) NOT NULL,
    email VARCHAR NOT NULL,
    password VARCHAR NOT NULL,
@@ -51,9 +51,9 @@ INSERT INTO ACCOUNT (id, name,  email, password, creation_date, role) values (
 );
 
 CREATE TABLE chef (
-   id UUID NOT NULL,
+   id VARCHAR(36) NOT NULL,
    name VARCHAR(50) NOT NULL,
-   ACCOUNT_ID UUID NOT NULL,
+   ACCOUNT_ID VARCHAR(36) NOT NULL,
    primary key(id),
    CONSTRAINT fk_chef_account
           FOREIGN KEY (ACCOUNT_ID)
@@ -67,9 +67,9 @@ INSERT INTO chef (id, name, ACCOUNT_ID) values (
 
 
 CREATE TABLE recipe (
-   id UUID NOT NULL,
+   id VARCHAR(36) NOT NULL,
    name VARCHAR(50) NOT NULL,
-   cooks_fk_id UUID NOT NULL,
+   cooks_fk_id VARCHAR(36) NOT NULL,
    description VARCHAR NOT NULL,
    image VARCHAR NOT NULL,
    primary key(id),
@@ -103,7 +103,7 @@ INSERT INTO MONTH_REF (id, name) values (12, 'Décembre');
 
 
 CREATE TABLE INGREDIENT (
-   id UUID NOT NULL,
+   id VARCHAR(36) NOT NULL,
    name VARCHAR(50) NOT NULL,
    season_start NUMERIC NOT NULL,
    season_end NUMERIC NOT NULL,
@@ -149,8 +149,8 @@ INSERT INTO INGREDIENT (id, name, season_start, season_end, image) values (
 
 
 CREATE TABLE recipe_ingredient (
-   recipe_id UUID NOT NULL,
-   ingredient_id UUID NOT NULL,
+   recipe_id VARCHAR(36) NOT NULL,
+   ingredient_id VARCHAR(36) NOT NULL,
       CONSTRAINT fk_recipe
              FOREIGN KEY (recipe_id)
              REFERENCES recipe(id),

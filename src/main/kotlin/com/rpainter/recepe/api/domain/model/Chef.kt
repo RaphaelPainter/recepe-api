@@ -9,7 +9,7 @@ import java.util.*
 @Entity
 data class Chef(
     @Id
-    var id: UUID? = null){
+    var id: String? = null){
 
     var name: String?=null
 

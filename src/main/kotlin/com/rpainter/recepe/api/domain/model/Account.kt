@@ -14,7 +14,7 @@ data class Account(var name: String,   @JsonProperty(access = JsonProperty.Acces
 
 
     @Id
-    var id: UUID? = null
+    var id: String? = null
 
     private lateinit var role:String
 
